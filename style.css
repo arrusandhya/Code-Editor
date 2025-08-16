@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 30px;
+  gap: 20px;
+}
+
+.editor,
+.output {
+  flex: 1;
+  border-radius: 12px;
+  background-color: #1f1f1f;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background-color: #272727;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+#handburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#handburger svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+}
+
+#editor-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#run {
+  margin-left: auto;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #444;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+  animation: popIn 0.3s ease forwards;
+}
+
+button:hover {
+  background-color: #666;
+  transform: scale(1.05);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 16px;
+  font-family: monospace;
+  display: none;
+  background-color: #111;
+  color: #eee;
+  border-top: 1px solid #333;
+}
+
+textarea.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(500px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+iframe#result {
+  flex: 1;
+  border: none;
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #handburger {
+    display: block;
+  }
+
+  #editor-buttons {
+    display: none;
+  }
+
+  #editor-buttons.show {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .buttons {
+    flex-wrap: wrap;
+  }
+
+  #run {
+    margin-left: auto;
+  }
+}
+
+/* Autocomplete dropdown */
+div[style*="position: absolute"] {
+  scrollbar-width: none;
+}
+
+div[style*="position: absolute"]::-webkit-scrollbar {
+  display: none;
+}
